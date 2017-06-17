@@ -1,72 +1,80 @@
-set.seed(1L)
-
-mzrange = c(100, 1000)
-npeaks = 10
-nimg = 100
-
-ions <- function() {
-
-    mzs <- runif(npeaks, min = min(mzrange), max = max(mzrange)) 
+ions <- function(npeaks = 10,
+                 mzrange = c(100, 1000),
+                 nimg = 100) {
+    ## peaks
+    mzs <- runif(npeaks, min = min(mzrange), max = max(mzrange))    
     maxint <- 10
-    k <- sample(maxint, npeaks, replace = TRUE)
+    k <- sample(maxint, npeaks, replace = TRUE)    
     mzs <- sample(rep(mzs, k))
     N <- length(mzs)
 
-
-
-    cls0 <- colorRampPalette(c("black", "steelblue"))(100)
-    cls0 <- paste0(cls0, "AA")
-    cls <- cls0[round(mzs, -2)/10]
-
-    ys <- seq(0.05, 0.95, length = N)
-    x0 <- rep(100, N) ## start
-    xs <- mapply(seq, x0, mzs, length = nimg)
+    ## visuals
     cex <- mzs / max(mzs) * 2
 
-    list(mzrange = mzrange,
-         mzs = xs,
-         cex = cex,
-         cls = cls)
+    ## ms data
+    ys <- seq(0.05, 0.95, length = N)
+    x0 <- rep(100, N) ## start
+    msdata <- mapply(seq, x0, mzs, length = nimg)
 
+    ## spectrum
+    smzs <- sort(mzs)
+    sp <- data.frame(MZ = unique(smzs),
+                     Intensity = as.vector(table(smzs))/maxint)
+
+    structure(list(mzrange = range(mzs),
+                   ys = ys,
+                   msdata = msdata,
+                   size = cex,
+                   N = N,
+                   spectrum = sp),
+              class = "ions")
+}
+
+print.ions <- function(x, ...) {
+    cat("Object of class 'ions':\n")
+    cat("# analyze(.); detect(.); spectrum(.)\n")
+}
+
+analyse <- function(x, sleep = 0.1) {
+    stopifnot(inherits(x, "ions"))
+    apply(x$msdata, 1,
+          function(xi) {
+              plot(xi, x$ys, 
+                   xlim = x$mzrange, ylim = c(0, 1),
+                   yaxt = "n", xlab = "M/Z", ylab = "Analytes",
+                   main = "Analyser", cex = x$size)
+              Sys.sleep(sleep)
+          })
+    invisible(TRUE)    
+}
+
+detect <- function(x, new = FALSE) {
+    stopifnot(inherits(x, "ions"))
+    if (new)
+        plot(x$msdata[nrow(x$msdata),], x$ys, 
+             xlim = x$mzrange, ylim = c(0, 1),
+             yaxt = "n", xlab = "M/Z", ylab = "Analytes",
+             main = "Analyser", cex = x$size)        
+    grid()
+    lines(x$spectrum$MZ, x$spectrum$Intensity,
+          col = "red", type = "h", lwd = 2) 
 
 }
 
-empty_ms <- function(main = "Analyser") {
-    plot(NA, type = "n", xlim = c(100, 1000), ylim = c(0, 1),
-         yaxt = "n", xlab = "M/Z", ylab = "Analytes",
-         main = main)
+spectrum <- function(x, ...) {
+    plot(x$spectrum, type = "h",
+         ylim = c(0, 1),
+         lwd = 2, ...)
+    grid()
 }
 
-apply(xs, 1,
-      function(xi) {
-          plot(xi, ys, 
-               xlim = c(100, 1000), ylim = c(0, 1),
-               yaxt = "n", xlab = "M/Z", ylab = "Analytes",
-               pch = 19, col = cls,
-               main = "Analyser", cex = cex)
-          Sys.sleep(0.1)          
-      })
-
-plot(xs[l, ], ys, 
-     xlim = c(100, 1000), ylim = c(0, 1),
-     yaxt = "n", xlab = "M/Z", ylab = "Intensity",
-     pch = 19, col = cls,
-     main = "Detector", cex = cex)
-
-grid()
-smzs <- sort(mzs)
-lines(unique(smzs), table(smzs)/maxint, type = "h", lwd = 2)
-
-plot(xs[l, ], ys, type = "n",
-     xlim = c(100, 1000), ylim = c(0, 1),
-     yaxt = "n", xlab = "M/Z", ylab = "Intensity",
-     pch = 19, col = cls,
-     main = "Spectrum", cex = cex)
-grid()
-lines(unique(smzs), table(smzs)/maxint, type = "h", lwd = 2)
+## empty_ms <- function(main = "Analyser") {
+##     plot(NA, type = "n", xlim = c(100, 1000), ylim = c(0, 1),
+##          yaxt = "n", xlab = "M/Z", ylab = "Analytes",
+##          main = main)
+## }
 
 
-dat <- tibble(MZ = unique(smzs),
-              Intensity = as.vector(table(smzs)))
-print(dat)
+
+
 

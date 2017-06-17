@@ -6,6 +6,7 @@ Authors@R: person("Laurent", "Gatto",
 	   	  role = c("aut", "cre"))
 Description: A tutorial to learn basics of mass spectrometry in R.
 Depends: R (>= 3.4.0)
+Imports: tibble
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
