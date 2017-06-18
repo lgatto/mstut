@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/lgatto/mstut.svg?branch=master)](https://travis-ci.org/lgatto/mstut)
+
 This package is a simple tutorial describing the basics of mass
 spectrometry. It provides functions that can be used to plots and
 generate simple animations describing mass spectrometry and a vignette
