@@ -17,7 +17,7 @@
 ##' @export
 ##' @examples
 ##' set.seed(1L)
-##' x <- ions()
+##' x <- ions(nimg = 5)
 ##' x
 ##' analyse(x)
 ##' detect(x)

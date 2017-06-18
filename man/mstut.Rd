@@ -49,7 +49,7 @@ can later be analysed with \code{analyse()} and detected with
 }
 \examples{
 set.seed(1L)
-x <- ions()
+x <- ions(nimg = 5)
 x
 analyse(x)
 detect(x)
