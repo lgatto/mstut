@@ -17,14 +17,14 @@
 ##' @export
 ##' @examples
 ##' set.seed(1L)
-##' x <- ions(nimg = 5)
+##' x <- new_ions(nimg = 5)
 ##' x
 ##' analyse(x)
 ##' detect(x)
 ##' spectrum(x)
-ions <- function(npeaks = 10,
-                 mzrange = c(100, 1000),
-                 nimg = 100) {
+new_ions <- function(npeaks = 10,
+                     mzrange = c(100, 1000),
+                     nimg = 100) {
     ## peaks
     mzs <- stats::runif(npeaks, min = min(mzrange), max = max(mzrange))    
     maxint <- 10

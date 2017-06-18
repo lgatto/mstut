@@ -11,4 +11,4 @@ devtools::install_github("lgatto/mstut")
 
 ### Usage
 
-See `?mstut` for all details.
+See `?mstut` or `?new_ions` for all details.
