@@ -1,12 +1,18 @@
 Package: mstut
-Title: A mass spectrometry tutoral
+Title: A tutorial to learn basics of mass spectrometry in R.
 Version: 0.1.0
 Authors@R: person("Laurent", "Gatto",
                   email = "lg390@cam.ac.uk",
 	   	  role = c("aut", "cre"))
-Description: A tutorial to learn basics of mass spectrometry in R.
+Description: This package is a simple tutorial describing the basics
+	     of mass spectrometry. It provides functions that can be
+	     used to plots and generate simple animations describing
+	     mass spectrometry and a vignette as the main tutorial.
 Depends: R (>= 3.4.0)
-Imports: tibble
+URL: https://github.com/lgatto/mstut
+BugReports: https://github.com/lgatto/mstut/issues
+Suggests: knitr, rmarkdown, BiocStyle
 License: GPL-2
 Encoding: UTF-8
+VignetteBuilder: knitr
 LazyData: true

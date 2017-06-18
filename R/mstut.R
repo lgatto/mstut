@@ -1,3 +1,20 @@
+##' This is the constructor function to generate a set of ions that
+##' can later be analysed with `analyse()` and detected with
+##' `detect()`. 
+##'
+##' @title Creates an object of class `ions`.
+##' @param npeaks A `numeric` scalar defining the number of unique
+##'     peaks (M/Z values). Default is 10.
+##' @param mzrange A `numeric` of length 2 defining the range of
+##'     possible M/Z values. Default is `c(100, 1000)`.
+##' @param nimg A `numeric` scalar. When analysing the ions, their
+##'     separation along their M/Z values will be split along a
+##'     sequence of length `nimg`. Default is 100.
+##' @return An object of class `ions`.
+##' @author Laurent Gatto
+##' @examples
+##' x <- ions()
+##' x
 ions <- function(npeaks = 10,
                  mzrange = c(100, 1000),
                  nimg = 100) {
