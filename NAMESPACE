@@ -2,6 +2,7 @@
 
 S3method(print,ions)
 export(analyse)
+export(analyze)
 export(detect)
 export(new_ions)
 export(spectrum)

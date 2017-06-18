@@ -83,6 +83,10 @@ analyse <- function(x, sleep = 0.1) {
     invisible(NULL)
 }
 
+##' @rdname mstut
+##' @export
+analyze <- analyse
+
 ##' @param new A `logical` scalar, indicating if the separated ions
 ##'     (last frame of calling `analyse) should be plotting, or
 ##'     whether the detection should be overlaid. Default is `FALSE`,

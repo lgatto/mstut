@@ -4,6 +4,7 @@
 \alias{new_ions}
 \alias{mstut}
 \alias{analyse}
+\alias{analyze}
 \alias{detect}
 \alias{spectrum}
 \title{Create, analyse and detect ions}
@@ -11,6 +12,8 @@
 new_ions(npeaks = 10, mzrange = c(100, 1000), nimg = 100)
 
 analyse(x, sleep = 0.1)
+
+analyze(x, sleep = 0.1)
 
 detect(x, new = FALSE)
 
