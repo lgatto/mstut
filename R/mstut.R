@@ -2,7 +2,7 @@
 ##' can later be analysed with `analyse()` and detected with
 ##' `detect()`. 
 ##'
-##' @title Creates an object of class `ions`
+##' @title Creates analyse and detect ions
 ##' @param npeaks A `numeric` scalar defining the number of unique
 ##'     peaks (M/Z values). Default is 10.
 ##' @param mzrange A `numeric` of length 2 defining the range of
