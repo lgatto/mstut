@@ -6,7 +6,7 @@
 \alias{analyse}
 \alias{detect}
 \alias{spectrum}
-\title{Creates analyse and detect ions}
+\title{Create, analyse and detect ions}
 \usage{
 new_ions(npeaks = 10, mzrange = c(100, 1000), nimg = 100)
 
