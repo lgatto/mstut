@@ -70,12 +70,14 @@ print.ions <- function(x, ...) {
 ##' @rdname mstut
 analyse <- function(x, sleep = 0.1) {
     stopifnot(inherits(x, "ions"))
-    apply(x$msdata, 1,
-          function(xi) {
-              plot(xi, x$ys, 
+    n <- nrow(x$msdata)
+    sapply(seq_len(nrow(x$msdata)),
+          function(i) {
+              plot(x$msdata[i, ], x$ys, 
                    xlim = x$mzrange, ylim = c(0, 1),
                    yaxt = "n", xlab = "M/Z", ylab = "Analytes",
-                   main = "Analyser", cex = x$size)
+                   main = paste0("Analyser (", i, "/", n, ")"),
+                   cex = x$size)
               Sys.sleep(sleep)
           })
     invisible(NULL)
