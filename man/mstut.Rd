@@ -40,7 +40,8 @@ to add the plot on top of the opened device.}
 \value{
 An object of class \code{ions}.
 
-Use for it's side effect.
+\code{analyse}, \code{detect} and \code{spectrum} are used for their side
+effect or producing plots. They all invisibly return \code{NULL}.
 }
 \description{
 This is the constructor function to generate a set of ions that

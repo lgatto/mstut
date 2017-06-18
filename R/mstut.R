@@ -63,7 +63,8 @@ print.ions <- function(x, ...) {
 
 ##' @param x An object of class `ions`.
 ##' @param sleep How much time to wait before producing the next plot.
-##' @return Use for it's side effect.
+##' @return `analyse`, `detect` and `spectrum` are used for their side
+##'     effect or producing plots. They all invisibly return `NULL`.
 ##' @export
 ##' @importFrom graphics plot
 ##' @rdname mstut
